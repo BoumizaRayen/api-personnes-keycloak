@@ -1,4 +1,4 @@
-# API Personnes - TP4 / TP4.5
+# API Personnes 
 
 API REST de gestion de personnes, construite avec Express + SQLite, securisee par Keycloak (OAuth2/OpenID Connect), avec CORS et rate limiting.
 
