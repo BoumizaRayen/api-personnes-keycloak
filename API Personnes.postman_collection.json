@@ -1,0 +1,208 @@
+{
+  "info": {
+    "_postman_id": "906260a1-b96d-4343-86fa-2804e77c27e6",
+    "name": "API Personnes",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "51826125",
+    "_collection_link": "https://go.postman.co/collection/51826125-906260a1-b96d-4343-86fa-2804e77c27e6?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "GET personnes",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/personnes"
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "POST cree personne",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"nom\": \"taha\",\r\n  \"adresse\": \"Tunis\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/personnes"
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET personnes by id",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/personnes/{{personne_id}}"
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "PUT update personne",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"nom\": \"sarra\",\r\n  \"adresse\": \"Sousse\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/personnes/{{personne_id}}"
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "DELETE personne",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/personnes/{{personne_id}}"
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Token",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "grant_type",
+              "value": "password",
+              "type": "text",
+              "uuid": "af91e850-5361-463c-8cd5-90f6e2aea979"
+            },
+            {
+              "key": "client_id",
+              "value": "api-personne",
+              "type": "text",
+              "uuid": "56e1e965-a8a0-40f4-8235-0f4454623fa2"
+            },
+            {
+              "key": "client_secret",
+              "value": "{{client_secret}}",
+              "type": "text",
+              "uuid": "c2bf05ff-c502-4834-ac3e-4407195cb69f"
+            },
+            {
+              "key": "username",
+              "value": "{{username}}",
+              "type": "text",
+              "uuid": "cc70f7c0-1806-4518-91a6-44f879eb151a"
+            },
+            {
+              "key": "password",
+              "value": "{{password}}",
+              "type": "text",
+              "uuid": "9599ffd2-3c33-45fd-a25a-7ba258947a4d"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{keycloak_token_url}}"
+        }
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status 200', function () { pm.response.to.have.status(200); });",
+              "const json = pm.response.json();",
+              "if (json.access_token) {",
+              "  pm.collectionVariables.set('access_token', json.access_token);",
+              "}",
+              "pm.test('access_token present', function () {",
+              "  pm.expect(json.access_token).to.be.a('string').and.not.empty;",
+              "});"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{access_token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3000",
+      "type": "string"
+    },
+    {
+      "key": "keycloak_token_url",
+      "value": "http://localhost:8080/realms/api-realm/protocol/openid-connect/token",
+      "type": "string"
+    },
+    {
+      "key": "access_token",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "client_secret",
+      "value": "replace-with-your-client-secret",
+      "type": "string"
+    },
+    {
+      "key": "username",
+      "value": "testuser",
+      "type": "string"
+    },
+    {
+      "key": "password",
+      "value": "replace-with-your-password",
+      "type": "string"
+    },
+    {
+      "key": "personne_id",
+      "value": "1",
+      "type": "string"
+    }
+  ]
+}

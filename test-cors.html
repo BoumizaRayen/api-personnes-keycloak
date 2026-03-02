@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test CORS API Personnes</title>
+</head>
+<body>
+  <h1>Test CORS</h1>
+  <p>Ouvre la console du navigateur pour voir la reponse.</p>
+
+  <script>
+    fetch("http://localhost:3000/")
+      .then((response) => response.json())
+      .then((data) => console.log("Reponse API:", data))
+      .catch((error) => console.error("Erreur:", error));
+  </script>
+</body>
+</html>
